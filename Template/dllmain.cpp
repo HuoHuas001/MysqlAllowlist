@@ -5,6 +5,7 @@
 #pragma comment(lib, "../SDK/Lib/bedrock_server_var.lib")
 #pragma comment(lib, "../SDK/Lib/SymDBHelper.lib")
 #pragma comment(lib, "../SDK/Lib/LiteLoader.lib")
+#pragma comment(lib,"../include/MySQL/libmysql.lib")
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -14,11 +15,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        static_assert(false, "Please modify your plugin registration details and delete this line");
-        LL::registerPlugin("PluginName", "Introduction", LL::Version(1, 0, 0), {
-                { "Note", "This is a note, you can remove it" },
-                { "Author", "???" },
-                { "Key", "Value" }
+        LL::registerPlugin("MySQLAllowList", "Allowlist on mysql", LL::Version(1, 0, 0), {
+                { "Author", "HuoHua" }
             }
         );
         break;

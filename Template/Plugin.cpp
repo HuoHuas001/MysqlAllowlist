@@ -136,17 +136,18 @@ string queryMysqlPlayerList() {
 	}
 	string rv = "";
 	string xv = "";
-	string rl = "";
+	json j = json::parse("{\"command\":\"allowlist\",\"result\":[]}");
 	bool fg = false;
 	while (auto row = mysql_fetch_row(res)) {
 		xv = row[0];
 		rv = row[1];
-		string pl = "{\"name\":\""+rv+"\",\"xuid\":"+xv+"},";
-		rl += pl;
+		string pl = "{\"name\":\""+rv+"\",\"xuid\":\""+xv+"\"}";
+		json jr = json::parse(pl);
+		j["result"].push_back(jr);
 	}
 	mysql_free_result(res);
 	mysql_close(con);
-	return rl;
+	return j.dump();
 }
 
 bool queryMysqlPlayerRemove(string name) {
@@ -222,8 +223,8 @@ public:
 				}
 				break;
 			case list:
-				string pll = "{\"command\":\"allowlist\",\"result\":[{"+queryMysqlPlayerList() + "}]}";
-				output.addMessage(pll);
+				
+				output.addMessage(queryMysqlPlayerList());
 				break;
 			}
 	}

@@ -69,7 +69,7 @@ jobs:
         cp x64/Release/*.dll D:/out/plugins
         cp x64/Release/*.pdb D:/out/plugins
         cp plugins/*.dll D:/out/plugins/
-        cp plugins/*.json D:/out/plugins/AllowList
+        cp plugins/AllowList/*.json D:/out/plugins/AllowList
       shell: bash
 
     - name: Upload plugins

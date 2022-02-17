@@ -61,14 +61,15 @@ jobs:
         mkdir D:/out/sdk/Lib
         mkdir D:/out/sdk/Header
         mkdir D:/out/plugins
-       # mkdir D:/out/plugins/
+        mkdir D:/out/plugins/AllowList
     
     - name: Copy Out Files
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
         cp x64/Release/*.dll D:/out/plugins
         cp x64/Release/*.pdb D:/out/plugins
-        cp plugins/* D:/out/plugins/
+        cp plugins/*.dll D:/out/plugins/
+        cp plugins/*.json D:/out/plugins/AllowList
       shell: bash
 
     - name: Upload plugins
